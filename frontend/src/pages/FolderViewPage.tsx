@@ -116,6 +116,12 @@ const FolderViewPage: React.FC = () => {
     navigator.clipboard.writeText(link).catch(() => {});
   };
 
+  // 🔹 NEW: open file in a new tab
+  const openFile = (file: FileItem) => {
+    if (!file.url) return;
+    window.open(file.url, "_blank", "noopener,noreferrer");
+  };
+
   const goBack = () => {
     navigate(-1);
   };
@@ -283,11 +289,20 @@ const FolderViewPage: React.FC = () => {
                 key={f._id}
                 secondaryAction={
                   <>
-                    <IconButton onClick={() => handleRenameFolder(f)} size="small">
+                    <IconButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRenameFolder(f);
+                      }}
+                      size="small"
+                    >
                       <EditIcon fontSize="small" />
                     </IconButton>
                     <IconButton
-                      onClick={() => handleDeleteFolder(f._id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteFolder(f._id);
+                      }}
                       size="small"
                       color="error"
                     >
@@ -311,17 +326,29 @@ const FolderViewPage: React.FC = () => {
                 key={file._id}
                 secondaryAction={
                   <>
-                    <IconButton onClick={() => shareFile(file._id)} size="small">
+                    <IconButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        shareFile(file._id);
+                      }}
+                      size="small"
+                    >
                       <ShareIcon fontSize="small" />
                     </IconButton>
                     <IconButton
-                      onClick={() => handleRenameFile(file)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleRenameFile(file);
+                      }}
                       size="small"
                     >
                       <EditIcon fontSize="small" />
                     </IconButton>
                     <IconButton
-                      onClick={() => handleDeleteFile(file._id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteFile(file._id);
+                      }}
                       size="small"
                       color="error"
                     >
@@ -329,6 +356,9 @@ const FolderViewPage: React.FC = () => {
                     </IconButton>
                   </>
                 }
+                sx={{ cursor: "pointer" }}
+                // 🔹 Clicking the row opens the file
+                onClick={() => openFile(file)}
               >
                 <Box display="flex" flexDirection="column" width="100%">
                   <Box display="flex" alignItems="center" gap={1}>
