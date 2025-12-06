@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    // Where your TS files live
+    "rootDir": "src",
+    // Where compiled JS should go
+    "outDir": "dist",
+
+    // Node + CommonJS setup
+    "target": "ES2019",
+    "module": "commonjs",
+    "moduleResolution": "node",
+
+    // So `import express from "express"` works
+    "esModuleInterop": true,
+
+    // TypeScript behaviour
+    "strict": false,          // make TS less angry 🙂
+    "skipLibCheck": true,
+
+    // Useful extras
+    "resolveJsonModule": true,
+    "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
