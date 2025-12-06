@@ -14,13 +14,12 @@ const router = Router();
 
 router.use(auth);
 
-router.get("/root", getRootFolders);            // Find all folders (top level)
+router.get("/root", getRootFolders);           
 router.post("/", createFolder);
-router.get("/:id", getFolderContent);           // Nested view
+router.get("/:id", getFolderContent);          
 router.patch("/:id", renameFolder);
 router.delete("/:id", deleteFolder);
 
-// share
 router.post("/:id/share", createFolderShareLink);
 router.patch("/share/:shareId/revoke", revokeShareLink);
 

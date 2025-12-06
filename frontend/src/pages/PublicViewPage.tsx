@@ -44,7 +44,6 @@ type PublicPayload =
       kind: "file";
       file: FileType;
     }
-  // fallback for older simple shapes
   | any;
 
 const PublicViewPage = () => {
@@ -62,9 +61,7 @@ const PublicViewPage = () => {
       .finally(() => setLoading(false));
   }, [shareId]);
 
-  // =======================
-  // Loading / Error states
-  // =======================
+ 
   if (loading) {
     return (
       <Box
@@ -108,9 +105,7 @@ const PublicViewPage = () => {
     );
   }
 
-  // =======================
-  // Normalize backend data
-  // =======================
+ 
   let isFile = false;
   let folderName = "";
   let files: FileType[] = [];
@@ -118,7 +113,6 @@ const PublicViewPage = () => {
   let sharedFile: FileType | null = null;
 
   if (data.kind === "folder") {
-    // new format from public.controller
     isFile = false;
     folderName = data.folder?.name || "Shared folder";
     files = data.files || [];
@@ -127,7 +121,6 @@ const PublicViewPage = () => {
     isFile = true;
     sharedFile = data.file;
   } else {
-    // fallback for old simple responses
     if ((data as any).url) {
       isFile = true;
       sharedFile = {
@@ -142,9 +135,7 @@ const PublicViewPage = () => {
     }
   }
 
-  // =======================
-  // UI
-  // =======================
+ 
   return (
     <Box
       sx={{
@@ -162,7 +153,6 @@ const PublicViewPage = () => {
             borderRadius: 4,
           }}
         >
-          {/* Header */}
           <Box
             display="flex"
             alignItems="center"
@@ -204,7 +194,6 @@ const PublicViewPage = () => {
 
           <Divider sx={{ mb: 3 }} />
 
-          {/* File view */}
           {isFile && sharedFile && (
             <Box>
               <Typography variant="subtitle2" color="text.secondary">
@@ -235,10 +224,8 @@ const PublicViewPage = () => {
             </Box>
           )}
 
-          {/* Folder view */}
           {!isFile && (
             <Box>
-              {/* Folder name */}
               <Box mb={3}>
                 <Typography variant="subtitle2" color="text.secondary">
                   Folder name
@@ -248,7 +235,6 @@ const PublicViewPage = () => {
                 </Typography>
               </Box>
 
-              {/* Sub-folders */}
               <Box mb={3}>
                 <Box
                   display="flex"
@@ -287,7 +273,6 @@ const PublicViewPage = () => {
 
               <Divider sx={{ my: 2 }} />
 
-              {/* Files */}
               <Box>
                 <Box
                   display="flex"

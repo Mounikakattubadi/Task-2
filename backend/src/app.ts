@@ -9,7 +9,7 @@ import publicRoutes from "./routes/public.routes";
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // IMPORTANT
+app.use(express.json()); 
 
 app.get("/", (_req, res) => {
   res.json({ message: "Storage Platform API" });

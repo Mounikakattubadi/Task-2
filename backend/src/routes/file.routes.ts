@@ -15,7 +15,6 @@ router.post("/", createFile);
 router.patch("/:id", renameFile);
 router.delete("/:id", deleteFile);
 
-// share
 router.post("/:id/share", createFileShareLink);
 
 export default router;

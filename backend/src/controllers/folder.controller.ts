@@ -5,7 +5,6 @@ import ShareLink from "../models/ShareLink";
 import { AuthRequest } from "../middleware/auth";
 import { randomUUID } from "crypto";
 
-// Get all top-level folders
 export const getRootFolders = async (req: AuthRequest, res: Response) => {
   const folders = await Folder.find({
     owner: req.userId,
@@ -38,7 +37,6 @@ export const renameFolder = async (req: AuthRequest, res: Response) => {
 
 export const deleteFolder = async (req: AuthRequest, res: Response) => {
   const { id } = req.params;
-  // simple delete (no deep cascade for assignment)
   await File.deleteMany({ folder: id, owner: req.userId });
   await Folder.deleteOne({ _id: id, owner: req.userId });
   res.json({ message: "Folder deleted" });
@@ -54,7 +52,6 @@ export const getFolderContent = async (req: AuthRequest, res: Response) => {
   res.json({ folder, childFolders, files });
 };
 
-// Share link for folder
 export const createFolderShareLink = async (req: AuthRequest, res: Response) => {
   const { id } = req.params;
   const folder = await Folder.findOne({ _id: id, owner: req.userId });

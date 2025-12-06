@@ -34,7 +34,7 @@ export const deleteFile = async (req: AuthRequest, res: Response) => {
 };
 
 export const createFileShareLink = async (req: AuthRequest, res: Response) => {
-  const { id } = req.params; // fileId
+  const { id } = req.params; 
   const file = await File.findOne({ _id: id, owner: req.userId });
   if (!file) return res.status(404).json({ message: "File not found" });
 

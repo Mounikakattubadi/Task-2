@@ -76,7 +76,6 @@ const DashboardPage: React.FC = () => {
       }}
     >
       <Container maxWidth="lg">
-        {/* Top bar */}
         <Box
           display="flex"
           justifyContent="space-between"
@@ -106,7 +105,6 @@ const DashboardPage: React.FC = () => {
           </Button>
         </Box>
 
-        {/* Create folder section */}
         <Paper
           elevation={3}
           sx={{
@@ -156,7 +154,6 @@ const DashboardPage: React.FC = () => {
           </Box>
         </Paper>
 
-        {/* Folders table */}
         <Paper
           elevation={3}
           sx={{

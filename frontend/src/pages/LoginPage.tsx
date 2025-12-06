@@ -52,7 +52,6 @@ const LoginPage: React.FC = () => {
             borderRadius: 4,
           }}
         >
-          {/* Logo + title */}
           <Box
             display="flex"
             flexDirection="column"
@@ -75,7 +74,6 @@ const LoginPage: React.FC = () => {
             </Typography>
           </Box>
 
-          {/* Form */}
           <Box component="form" onSubmit={handleSubmit} mt={2}>
             <TextField
               fullWidth

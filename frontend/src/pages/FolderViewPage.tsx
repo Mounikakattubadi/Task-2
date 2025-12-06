@@ -55,7 +55,6 @@ const FolderViewPage: React.FC = () => {
 
   useEffect(() => {
     if (id) fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   const handleCreateFolder = async () => {
@@ -116,7 +115,6 @@ const FolderViewPage: React.FC = () => {
     navigator.clipboard.writeText(link).catch(() => {});
   };
 
-  // 🔹 NEW: open file in a new tab
   const openFile = (file: FileItem) => {
     if (!file.url) return;
     window.open(file.url, "_blank", "noopener,noreferrer");
@@ -143,7 +141,6 @@ const FolderViewPage: React.FC = () => {
             borderRadius: 4,
           }}
         >
-          {/* Header */}
           <Box
             display="flex"
             alignItems="center"
@@ -205,7 +202,6 @@ const FolderViewPage: React.FC = () => {
             </Paper>
           )}
 
-          {/* Create section */}
           <Box mb={3}>
             <Typography variant="subtitle1" fontWeight={600} gutterBottom>
               Add items to this folder
@@ -264,7 +260,6 @@ const FolderViewPage: React.FC = () => {
 
           <Divider sx={{ mb: 2 }} />
 
-          {/* Combined list: folders first, then files */}
           <Box
             display="flex"
             alignItems="center"
@@ -283,7 +278,6 @@ const FolderViewPage: React.FC = () => {
           </Box>
 
           <List dense>
-            {/* Folders */}
             {childFolders.map((f) => (
               <ListItem
                 key={f._id}
@@ -320,7 +314,6 @@ const FolderViewPage: React.FC = () => {
               </ListItem>
             ))}
 
-            {/* Files */}
             {files.map((file) => (
               <ListItem
                 key={file._id}
@@ -357,7 +350,6 @@ const FolderViewPage: React.FC = () => {
                   </>
                 }
                 sx={{ cursor: "pointer" }}
-                // 🔹 Clicking the row opens the file
                 onClick={() => openFile(file)}
               >
                 <Box display="flex" flexDirection="column" width="100%">

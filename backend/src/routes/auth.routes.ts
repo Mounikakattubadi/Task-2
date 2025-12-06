@@ -4,11 +4,9 @@ import User from "../models/User";
 
 const router = Router();
 
-// normal routes
 router.post("/register", register);
 router.post("/login", login);
 
-// 👇 TEMP ROUTE: create admin WITHOUT Postman body
 router.get("/seed-admin", async (_req, res) => {
   try {
     const existing = await User.findOne({ email: "admin@example.com" });

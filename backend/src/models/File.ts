@@ -10,7 +10,7 @@ export interface IFile extends Document {
 const fileSchema = new Schema<IFile>(
   {
     name: { type: String, required: true },
-    url: { type: String, required: true }, // dummy URL ok
+    url: { type: String, required: true }, 
     folder: { type: Schema.Types.ObjectId, ref: "Folder", required: true },
     owner: { type: Schema.Types.ObjectId, ref: "User", required: true }
   },
