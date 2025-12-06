@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Container, TextField, Button, Typography, Box, Paper } from "@mui/material";
+import {
+  Container,
+  TextField,
+  Button,
+  Typography,
+  Box,
+  Paper,
+  Avatar,
+  InputAdornment,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import EmailIcon from "@mui/icons-material/Email";
 import api from "../api/client";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -24,38 +35,96 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 10 }}>
-      <Paper sx={{ p: 4 }}>
-        <Typography variant="h5" mb={2}>
-          Admin Login
-        </Typography>
-        <Box component="form" onSubmit={handleSubmit}>
-          <TextField
-            fullWidth
-            label="Email"
-            margin="normal"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            fullWidth
-            type="password"
-            label="Password"
-            margin="normal"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {error && (
-            <Typography color="error" variant="body2" mt={1}>
-              {error}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background:
+          "linear-gradient(135deg, rgba(25,118,210,0.08), rgba(156,39,176,0.08))",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+      <Container maxWidth="sm">
+        <Paper
+          elevation={6}
+          sx={{
+            p: { xs: 3, sm: 4 },
+            borderRadius: 4,
+          }}
+        >
+          {/* Logo + title */}
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            mb={2}
+          >
+            <Avatar sx={{ bgcolor: "primary.main", mb: 1, width: 48, height: 48 }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography variant="h5" fontWeight={600}>
+              Storage Platform
             </Typography>
-          )}
-          <Button type="submit" fullWidth variant="contained" sx={{ mt: 2 }}>
-            Login
-          </Button>
-        </Box>
-      </Paper>
-    </Container>
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              textAlign="center"
+              mt={0.5}
+            >
+              Admin login to manage folders, files and share links.
+            </Typography>
+          </Box>
+
+          {/* Form */}
+          <Box component="form" onSubmit={handleSubmit} mt={2}>
+            <TextField
+              fullWidth
+              label="Email"
+              margin="normal"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EmailIcon fontSize="small" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              fullWidth
+              type="password"
+              label="Password"
+              margin="normal"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockOutlinedIcon fontSize="small" />
+                  </InputAdornment>
+                ),
+              }}
+            />
+
+            {error && (
+              <Typography color="error" variant="body2" mt={1}>
+                {error}
+              </Typography>
+            )}
+
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, py: 1.1, textTransform: "none", fontWeight: 600 }}
+            >
+              Login
+            </Button>
+          </Box>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 
